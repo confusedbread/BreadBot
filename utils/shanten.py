@@ -1,7 +1,10 @@
-from mahjong_helper import parse_hand_from_string
+from utils.mahjong_helper import parse_hand_from_string
+from utils.standard_shanten import calculateStandardShanten
 
+def calculate_shanten(input_hand):
 
-def calculate_shanten(hand):
+    hand = parse_hand_from_string(input_hand)
+
     chiitoi_shanten = calc_chiitoi_shanten(hand)
     kokushi_shanten = calc_kokushi_shanten(hand)
     standard_shanten = calc_standard_shanten(hand)
@@ -46,13 +49,27 @@ def calc_standard_shanten(hand):
     # maximumShanten = max(8 - 2 * groups - max(pairs + taatsu, floor(hand.length/3)-groups) - min(1, max(0, pairs + taatsu - (4 - groups))), 6).
     #
 
-    return 0
+    hand_array = [0]*38
+    for suit, tiles in hand.items():
+        offset = 1
+        if suit == 'p':
+            offset = 11
+        elif suit == 's':
+            offset = 21
+        elif suit == 'z':
+            offset = 31
+        for tile in tiles:
+            hand_array[tile + offset] += 1
 
+    return calculateStandardShanten(hand_array)
 
-chiitoi_hand = "1133m45s1699p112z"
+chiitoi_hand = "1233m45s1699p112z"
 my_hand = parse_hand_from_string(chiitoi_hand)
 print(my_hand)
 shanten_pears = calc_chiitoi_shanten(my_hand)
 print(shanten_pears)
 shanten_kekw = calc_kokushi_shanten(my_hand)
 print(shanten_kekw)
+
+shanten_regular = calc_standard_shanten(my_hand)
+print(shanten_regular)
