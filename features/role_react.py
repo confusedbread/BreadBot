@@ -7,7 +7,6 @@ emoji_to_role = {
 
 
 async def add_follower(bot, payload):
-
     if payload.message_id != RULES_MSG_ID:
         return
 
