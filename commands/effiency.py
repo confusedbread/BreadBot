@@ -9,7 +9,7 @@ async def effiency(bot, message):
     if len(args) != 2:
         await message.channel.send('Invalid Number are elements sent')
 
-    command_txt, hand = args
+    hand = args[1]
 
     emoji_hand = hand_to_emoji(hand)
     shanten = calculate_shanten(hand)
