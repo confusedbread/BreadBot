@@ -1,6 +1,8 @@
 import os
 from features import role_react
 from client.bot import bot, log
+from commands.effiency import effiency
+
 
 with open('.bot-key') as f:
     BOT_KEY = f.read()
@@ -19,7 +21,10 @@ async def on_message(message):
         return
 
     if message.content.startswith('!hello'):
-        await message.channel.send('Hello! Me Bot')
+        await message.channel.send('Hello! Me Bot {}'.format('🀇'))
+    #Temp Commands Fix Later
+    elif message.content.startswith('!eff'):
+        await effiency(bot, message)
 
 
 @bot.event
