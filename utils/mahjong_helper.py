@@ -1,5 +1,10 @@
 def parse_hand_from_string(hand_str):
-    hand = {}
+    hand = {
+        'm' : [],
+        'p' : [],
+        's' : [],
+        'z' : []
+    }
     tiles = []
     tile_count = 0
 
