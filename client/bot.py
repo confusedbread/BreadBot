@@ -6,7 +6,7 @@ intents.members = True
 
 bot = discord.Client(intents=intents)
 
-CHANNEL_ID = 798299047025836163
+CHANNEL_ID = 765949576796176424
 
 logging.basicConfig(level=logging.INFO)
 
