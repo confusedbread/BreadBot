@@ -8,6 +8,8 @@ def parse_hand_from_string(hand_str):
     tiles = []
     tile_count = 0
 
+    hand_str = hand_str.lower()
+
     for char in hand_str:
         if valid_suit(hand_str, char):
             if valid_tiles(hand_str, char, tiles):

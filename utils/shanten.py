@@ -62,14 +62,3 @@ def calc_standard_shanten(hand):
             hand_array[tile + offset] += 1
 
     return calculateStandardShanten(hand_array)
-
-chiitoi_hand = "1233m45s1699p112z"
-my_hand = parse_hand_from_string(chiitoi_hand)
-print(my_hand)
-shanten_pears = calc_chiitoi_shanten(my_hand)
-print(shanten_pears)
-shanten_kekw = calc_kokushi_shanten(my_hand)
-print(shanten_kekw)
-
-shanten_regular = calc_standard_shanten(my_hand)
-print(shanten_regular)
