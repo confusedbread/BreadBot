@@ -24,7 +24,7 @@ async def add_follower(bot, payload):
 
     try:
         await payload.member.add_roles(role)
-        await log("Role Successfully Added")
+        await log("Role {} Successfully Added to {}".format(role.name, payload.member.name))
     except Exception as e:
         print("Something Bad Happened {}".format(e))
         return
@@ -49,7 +49,7 @@ async def remove_follower(bot, payload):
 
     try:
         await member.remove_roles(role)
-        await log("Role Successfully Removed")
-    except Exception:
-        print("Something Bad Happened")
+        await log("Role {} Successfully Removed from {}".format(role.name, member.name))
+    except Exception as e:
+        print("Something Bad Happened {}".format(e))
         return
