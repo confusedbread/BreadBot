@@ -2,6 +2,8 @@ import os
 from features import role_react, role_live_now
 from client.bot import bot, log
 from commands.effiency import effiency
+from features.japanese_support import hiragana_helper
+from features.japanese_support.commands.romaji import romaji
 
 
 with open('.bot-key') as f:
@@ -25,6 +27,10 @@ async def on_message(message):
     #Temp Commands Fix Later
     elif message.content.startswith('!eff'):
         await effiency(bot, message)
+    elif message.content.startswith('!rom'):
+        await romaji(bot, message)
+    else:
+        await hiragana_helper.translate(bot, message)
 
 
 @bot.event
