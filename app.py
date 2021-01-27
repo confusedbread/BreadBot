@@ -1,5 +1,5 @@
 import os
-from features import role_react
+from features import role_react, role_live_now
 from client.bot import bot, log
 from commands.effiency import effiency
 
@@ -25,6 +25,11 @@ async def on_message(message):
     #Temp Commands Fix Later
     elif message.content.startswith('!eff'):
         await effiency(bot, message)
+
+
+@bot.event
+async def on_member_update(before, after):
+    await role_live_now.update_live_now(bot, before, after)
 
 
 @bot.event

@@ -3,6 +3,7 @@ import logging
 
 intents = discord.Intents.default()
 intents.members = True
+intents.presences = True
 
 bot = discord.Client(intents=intents)
 
