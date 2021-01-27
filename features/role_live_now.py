@@ -22,7 +22,7 @@ async def update_live_now(bot, before, after):
     elif not was_streaming and not now_streaming:
         return 
 
-    role = after.guild.get_role(804029421488046160)
+    role = after.guild.get_role(LIVE_NOW_ROLE_ID)
 
     try:
         if was_streaming and not now_streaming:
