@@ -7,7 +7,7 @@ async def effiency(bot, message):
     args = message.content.split()
 
     if len(args) != 2:
-        await message.channel.send('Invalid Number are elements sent')
+        await message.channel.send('Invalid Number of elements')
         return
 
     hand = args[1]

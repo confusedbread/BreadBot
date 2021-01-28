@@ -2,6 +2,7 @@ import os
 from features import role_react, role_live_now
 from client.bot import bot, log
 from commands.effiency import effiency
+from commands.pet import pet
 from features.japanese_support import hiragana_helper
 from features.japanese_support.commands.romaji import romaji
 
@@ -24,6 +25,8 @@ async def on_message(message):
 
     if message.content.startswith('!hello'):
         await message.channel.send('Hello! Me Bot {}'.format('🀇'))
+    elif message.content.startswith('!pet'):
+        await pet(bot, message)
     #Temp Commands Fix Later
     elif message.content.startswith('!eff'):
         await effiency(bot, message)
