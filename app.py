@@ -1,21 +1,25 @@
 import os
 from features import role_react, role_live_now
 from client.bot import bot, log
-from commands.effiency import effiency
-from commands.pet import pet
-from features.japanese_support import hiragana_helper
-from features.japanese_support.commands.romaji import romaji
 
+from commands import simple_commands
+from features import japanese_support
 
 with open('.bot-key') as f:
     BOT_KEY = f.read()
 BOT_KEY = os.environ.get('BOT_KEY', BOT_KEY)
 
+commands_lookup = {}
+
+commands_lookup.update(simple_commands)
+commands_lookup.update(japanese_support.commands)
 
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     await log('Bread Bot Reporting for Duty!')
+    await role_live_now.check_live_status(bot)
+
 
 
 @bot.event
@@ -23,17 +27,16 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    if message.content.startswith('!hello'):
-        await message.channel.send('Hello! Me Bot {}'.format('🀇'))
-    elif message.content.startswith('!pet'):
-        await pet(bot, message)
-    #Temp Commands Fix Later
-    elif message.content.startswith('!eff'):
-        await effiency(bot, message)
-    elif message.content.startswith('!rom'):
-        await romaji(bot, message)
+    #Message is empty. Example: picture
+    if not message.content:
+        return 
+
+    first_arg = message.content.split()[0]
+    
+    if commands_lookup.setdefault(first_arg, None) != None:
+        await commands_lookup[first_arg](bot, message)
     else:
-        await hiragana_helper.translate(bot, message)
+        await japanese_support.translate(bot, message)
 
 
 @bot.event

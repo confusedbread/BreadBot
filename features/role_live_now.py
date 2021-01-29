@@ -35,3 +35,43 @@ async def update_live_now(bot, before, after):
         print("Unable to assign/remove Live Now Role")
         return
 
+async def check_live_status(bot):
+
+    for guild in bot.guilds:
+
+        live_members = []
+        not_live_members = []
+        role = guild.get_role(LIVE_NOW_ROLE_ID)
+
+        if not role:
+            continue
+
+        for member in guild.members:
+            streaming = False
+
+            if member.name == 'Streamcord':
+                continue
+
+            for activity in member.activities:
+                if activity.type.name == 'streaming':
+                    streaming = True
+                    live_members.append(member)
+                    break
+
+            if role in member.roles:
+                if not streaming:
+                    not_live_members.append(member)
+
+        try:
+            for member in live_members:
+                await member.add_roles(role)
+                await log("Member {} is now live".format(member.name))
+            
+            for member in not_live_members:
+                await member.remove_roles(role)
+                await log("Member {} is no longer live".format(member.name))
+
+        except Exception as e:
+            print(e)
+            print("Unable to assign/remove Live Now Role")
+            return
