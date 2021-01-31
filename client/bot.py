@@ -10,7 +10,7 @@ bot = discord.Client(intents=intents)
 CHANNEL_ID = 765949576796176424
 
 logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
 logger.addHandler(console_handler)
