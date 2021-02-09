@@ -1,6 +1,5 @@
-from .commands.romaji import romaji
-from .hiragana_helper import translate
+from client.bot import breadBot as bot
+from .hiragana_helper import JapaneseSupport
 
-commands = {
-    "!rom": romaji
-}
+
+bot.add_cog(JapaneseSupport(bot))
