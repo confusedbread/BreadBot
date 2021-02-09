@@ -1,5 +1,6 @@
 from commands import bot
 
+
 @bot.command()
 async def pet(ctx, to_pet=None):
 

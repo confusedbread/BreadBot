@@ -2,6 +2,7 @@ from commands import bot
 from utils.shanten import calculate_shanten
 from utils.hand_to_emoji import hand_to_emoji
 
+
 @bot.command(name='eff')
 async def effiency(ctx, hand=None):
     if not hand:
