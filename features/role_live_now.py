@@ -87,7 +87,7 @@ class LiveNow(commands.Cog):
                         not_live_members.append(member)
 
             for member in live_members:
-                self.set_role_live_now(member, role)
+                await self.set_role_live_now(member, role)
 
             for member in not_live_members:
-                self.remove_role_live_now(member, role)
+                await self.remove_role_live_now(member, role)
