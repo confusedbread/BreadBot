@@ -1,8 +1,2 @@
-from .effiency import effiency
-from .pet import pet
-
-simple_commands = {
-    '!eff': effiency,
-    '!pet': pet,
-}
-
+from client.bot import breadBot as bot
+from commands import effiency, pet

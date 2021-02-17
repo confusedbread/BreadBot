@@ -1,14 +1,12 @@
-from client.bot import log
+from commands import bot
 
-async def pet(bot, message):
-    
-    args = message.content.split()
 
-    if len(args) != 2:
+@bot.command()
+async def pet(ctx, to_pet=None):
+
+    if not to_pet:
         return
 
-    args[1] = args[1].lower()
-
-    if args[1] == 'bot' or args[1] == 'breadbot':
-        eliisa_emoji = bot.get_emoji(804134994871189504)
-        await message.channel.send(str(eliisa_emoji))
+    if to_pet == 'bot' or to_pet == 'breadbot':
+        eliisa_emoji = ctx.bot.get_emoji(804134994871189504)
+        await ctx.send(str(eliisa_emoji))
